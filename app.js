@@ -5,6 +5,8 @@ const https = require('https');
 
 const serverless = require('serverless-http');
 
+const PORT = process.env.PORT || 3000;
+
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -66,8 +68,8 @@ app.post('/failure', function(req, res){
     res.redirect('/');
 })
 
-app.listen(3000 || 8888, function(){
-    console.log("Server is listening at port 3000");
+app.listen(PORT, function(){
+    console.log("Server is listening at port " + PORT);
 })
 
 module.exports.handler = serverless(app);
