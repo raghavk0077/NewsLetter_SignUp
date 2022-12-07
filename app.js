@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const https = require('https');
 
+const serverless = require('serverless-http');
+
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -64,9 +66,11 @@ app.post('/failure', function(req, res){
     res.redirect('/');
 })
 
-app.listen(Process.env.PORT || 3000 || 8888, function(){
+app.listen(3000 || 8888, function(){
     console.log("Server is listening at port 3000");
 })
+
+module.exports.handler = serverless(app);
 
 
 //list id
